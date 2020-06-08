@@ -1,0 +1,4 @@
+rootProject.name='pluginDemo'
+include ':app'
+//include ':PluginLibrary'
+//project(':PluginLibrary').projectDir = new File(settingsDir,'../PluginLibrary/app')
