@@ -29,4 +29,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/btn_3"
         android:text="带回调函数调用"/>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_4"
+        android:text="带资源文件调用"/>
 </LinearLayout>

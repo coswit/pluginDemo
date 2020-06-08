@@ -16,14 +16,11 @@ import java.lang.reflect.Method;
 import dalvik.system.DexClassLoader;
 import xyz.coswit.pluginlibrary.IBean;
 import xyz.coswit.pluginlibrary.ICallback;
+import xyz.coswit.pluginlibrary.IDynamic;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
-    private AssetManager mAssetManager;
-    private Resources mResources;
-    private Resources.Theme mTheme;
 
-    private String apkName = "pluginApp.apk";    //apk名称
 
 
     @Override
@@ -31,20 +28,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        File extractFile = this.getFileStreamPath(apkName);
 
-        //apk文件地址
-        String dexpath = extractFile.getPath();
 
-        //释放目录, 0 表示Context.MODE_PRIVATE
-        File fileRelease = getDir("dex", 0);
 
-        Log.d("DEMO", "dexpath:" + dexpath);
-        Log.d("DEMO", "fileRelease.getAbsolutePath():" +
-                fileRelease.getAbsolutePath());
-
-        final DexClassLoader classLoader = new DexClassLoader(dexpath,
-                fileRelease.getAbsolutePath(), null, getClassLoader());
 
 
         final TextView tv = findViewById(R.id.tv);
@@ -115,16 +101,29 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
+        //带资源文件的调用
+        findViewById(R.id.btn_4).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                loadResources();
+                Class mLoadClassDynamic = null;
+
+                try {
+                    mLoadClassDynamic = classLoader.loadClass("xyz.coswit.plugindemo.Dynamic");
+                    Object dynamicObject = mLoadClassDynamic.newInstance();
+
+                    IDynamic dynamic = (IDynamic) dynamicObject;
+                    String content = dynamic.getStringForResId(MainActivity.this);
+                    tv.setText(content);
+                } catch (Exception e) {
+                    Log.e("DEMO", "msg:" + e.getMessage());
+                }
+            }
+        });
     }
 
 
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(newBase);
-        try {
-            Utils.extractAssets(newBase, apkName);
-        } catch (Throwable e) {
-            e.printStackTrace();
-        }
-    }
+
 }

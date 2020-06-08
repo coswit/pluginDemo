@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">pluginDemo</string>
+    <string name="plgin_app_hello">come from pluginApp</string>
 </resources>

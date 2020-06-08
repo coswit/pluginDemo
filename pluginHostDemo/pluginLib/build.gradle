@@ -29,11 +29,17 @@ task makeJar(type: Copy) {
     from('build/intermediates/aar_main_jar/release/')
     into('build/outputs/')
     include('classes.jar')
-    rename 'classes.jar' , 'mylib.jar'
+    rename 'classes.jar', 'mylib.jar'
+
+    copy {
+        from "$buildDir/outputs/mylib.jar"
+        into "$rootDir/pluginApp/lib"
+    }
+
 }
 
 
-makeJar.dependsOn(clearJar,build)
+makeJar.dependsOn(clearJar, build)
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
