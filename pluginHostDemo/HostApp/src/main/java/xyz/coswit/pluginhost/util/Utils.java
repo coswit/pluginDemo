@@ -1,4 +1,4 @@
-package xyz.coswit.pluginhost;
+package xyz.coswit.pluginhost.util;
 
 import android.content.Context;
 import android.content.res.AssetManager;
@@ -8,6 +8,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+
+import xyz.coswit.pluginhost.App;
 
 /**
  * @author weishu

@@ -14,6 +14,7 @@ import java.io.File;
 import java.lang.reflect.Method;
 
 import dalvik.system.DexClassLoader;
+import xyz.coswit.pluginhost.util.Utils;
 
 public class BaseActivity extends Activity {
 
