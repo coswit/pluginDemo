@@ -1,19 +1,12 @@
 package xyz.coswit.pluginhost;
 
-import android.content.Context;
-import android.content.res.AssetManager;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import java.io.File;
 import java.lang.reflect.Method;
 
-import dalvik.system.DexClassLoader;
 import xyz.coswit.pluginlibrary.IBean;
 import xyz.coswit.pluginlibrary.ICallback;
 import xyz.coswit.pluginlibrary.IDynamic;
